@@ -1,10 +1,11 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 
-import { COLORS, WEIGHTS } from '../../constants';
+import { COLORS, WEIGHTS, QUERIES, BREAKPOINTS } from '../../constants';
 import Logo from '../Logo';
 import SuperHeader from '../SuperHeader';
 import MobileMenu from '../MobileMenu';
+import Icon from '../Icon';
 
 const Header = () => {
   const [showMobileMenu, setShowMobileMenu] = React.useState(false);
@@ -21,14 +22,21 @@ const Header = () => {
         <Side>
           <Logo />
         </Side>
-        <Nav>
-          <NavLink href="/sale">Sale</NavLink>
-          <NavLink href="/new">New&nbsp;Releases</NavLink>
-          <NavLink href="/men">Men</NavLink>
-          <NavLink href="/women">Women</NavLink>
-          <NavLink href="/kids">Kids</NavLink>
-          <NavLink href="/collections">Collections</NavLink>
-        </Nav>
+          {/* Desktop markup */}
+          <Nav>
+            <NavLink href="/sale">Sale</NavLink>
+            <NavLink href="/new">New&nbsp;Releases</NavLink>
+            <NavLink href="/men">Men</NavLink>
+            <NavLink href="/women">Women</NavLink>
+            <NavLink href="/kids">Kids</NavLink>
+            <NavLink href="/collections">Collections</NavLink>
+          </Nav>
+          {/* Tablet and Down markup */}
+          <IconRow>
+            <Icon id="shopping-bag" strokeWidth={2} />
+            <Icon id="search" strokeWidth={2} />
+            <Icon id="menu" strokeWidth={2} />
+          </IconRow>
         <Side />
       </MainHeader>
 
@@ -52,10 +60,31 @@ const Nav = styled.nav`
   display: flex;
   gap: 48px;
   margin: 0px 48px;
+
+  @media ${QUERIES.tabletDown} {
+    display: none;
+  }
+`;
+
+const IconRow = styled.div`
+  display: none;
+
+  @media ${QUERIES.tabletDown} {
+    display: flex;
+    flex: 1;
+    justify-content: flex-end;
+    gap: clamp(1.25rem, 5.9vw - 1rem, 2.5rem);
+  }
 `;
 
 const Side = styled.div`
   flex: 1;
+
+  &:last-of-type {
+    @media ${QUERIES.tabletDown} {
+      flex: 0;
+    }
+  }
 `;
 
 const NavLink = styled.a`
