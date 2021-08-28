@@ -56,6 +56,7 @@ const MainHeader = styled.div`
   padding: 18px 32px;
   height: 72px;
   border-bottom: 1px solid ${COLORS.gray[300]};
+  overflow: auto;
 
   @media ${QUERIES.tabletDown} {
     align-items: center;
@@ -64,7 +65,7 @@ const MainHeader = styled.div`
 
 const Nav = styled.nav`
   display: flex;
-  gap: 48px;
+  gap: clamp(3rem, -15.870967741935484rem + 23.225806451612904vw, 12rem);
   margin: 0px 48px;
 
   @media ${QUERIES.tabletDown} {
