@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 
-import { COLORS, WEIGHTS, QUERIES, BREAKPOINTS } from '../../constants';
+import { COLORS, WEIGHTS, QUERIES } from '../../constants';
 import Logo from '../Logo';
 import SuperHeader from '../SuperHeader';
 import MobileMenu from '../MobileMenu';
@@ -35,7 +35,9 @@ const Header = () => {
           <IconRow>
             <Icon id="shopping-bag" strokeWidth={2} />
             <Icon id="search" strokeWidth={2} />
-            <Icon id="menu" strokeWidth={2} />
+            <Hamburger onClick={() => setShowMobileMenu(true)}>
+              <Icon id="menu" strokeWidth={2} />
+            </Hamburger>
           </IconRow>
         <Side />
       </MainHeader>
@@ -54,6 +56,10 @@ const MainHeader = styled.div`
   padding: 18px 32px;
   height: 72px;
   border-bottom: 1px solid ${COLORS.gray[300]};
+
+  @media ${QUERIES.tabletDown} {
+    align-items: center;
+  }
 `;
 
 const Nav = styled.nav`
@@ -97,6 +103,11 @@ const NavLink = styled.a`
   &:first-of-type {
     color: ${COLORS.secondary};
   }
+`;
+
+const Hamburger = styled.button`
+  background: transparent;
+  border: 0;
 `;
 
 export default Header;
